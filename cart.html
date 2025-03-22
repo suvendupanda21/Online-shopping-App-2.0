@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="cartstyle.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-list-icon">
+      <a href="cart.html"><i class="fa fa-bag-shopping" id="cart-icon"></i><span class="cart-counter">0</span></a>
+      <a href="login.html"><i class="fa-solid fa-circle-user"></i></a>
+    </div>
+  </header>
+
+  <main>
+    <section id="cart" class="container">
+      <h1>Your Cart</h1>
+      <div class="cart-items"></div>
+      <div class="cart-total"></div>
+      <button class="checkout-btn">Checkout</button>
+    </section>
+ </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsContainer = document.querySelector(".cart-items");
+        const cartTotalContainer = document.querySelector(".cart-total");
+        const cartCounter = document.querySelector(".cart-counter");
+    
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        cartCounter.textContent = cart.length;
+    
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        } else {
+          let total = 0;
+          cart.forEach((product, index) => {
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.innerHTML = `
+              <div class="product-info">
+                <img src="${product.img}" alt="${product.name}">
+                <div>
+                  <h4>${product.name}</h4>
+                  <p class="price">₹${product.price}</p>
+                </div>
+              </div>
+              <button class="remove-btn" data-index="${index}">Remove</button>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+            total += parseFloat(product.price);
+          });
+          cartTotalContainer.innerHTML = `Total: ₹${total.toFixed(2)}`;
+        }
+    
+        cartItemsContainer.addEventListener("click", function (e) {
+          if (e.target.classList.contains("remove-btn")) {
+            const index = e.target.getAttribute("data-index");
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+          }
+        });
+      });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(../sunset.jpg) no-repeat center center/cover;
+}
+.form-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    color: white;
+    width: 300px;
+}
+.form-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.input-box {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.input-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+}
+.input-box input:focus {
+    outline: none;
+    border-bottom-color: lightblue;
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+    height: 14px;
+}
+.action-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: purple;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.action-btn:hover {
+    background-color: darkviolet;
+}
+.toggle-form {
+    margin-top: 10px;
+    cursor: pointer;
+}
+.toggle-form span {
+    color: lightblue;
+    text-decoration: underline;
+}
